@@ -107,7 +107,7 @@ def main():
                 weekly_habit_list = manager.get_weekly_habits()
 
                 while True:
-                    print("\n\n--- \033[1;36mA\033[0mnalyze my \033[1;32mH\033[0mabits ---")
+                    print("\n\n-- \033[1;36mA\033[0mnalyze my \033[1;32mH\033[0mabits --")
                     print("[1] Overview of all Habits")
                     print("[2] Longest Streak(s)")
                     print("[3] Struggling Habits")
@@ -116,7 +116,7 @@ def main():
                     analysis_choice = input("___\nChoose an option: ")
 
                     if analysis_choice == "1":          #overview of all habits
-                        print("\n-- \033[1;36mO\033[0mverview daily \033[1;32mH\033[0mabits --")
+                        print("\n- \033[1;36mO\033[0mverview daily \033[1;32mH\033[0mabits -")
                         if not daily_habit_list:
                             print("No daily habits available.")
                         else:
@@ -124,7 +124,7 @@ def main():
                             for i in range(0, len(sorted_daily_habits), 1):
                                 overview_habit(sorted_daily_habits[i])
 
-                        print("-- \033[1;36mO\033[0mverview weekly \033[1;32mH\033[0mabits --") 
+                        print("- \033[1;36mO\033[0mverview weekly \033[1;32mH\033[0mabits -") 
                         if not weekly_habit_list:
                             print("No weekly habits available.")
                             continue
@@ -134,12 +134,12 @@ def main():
                                 overview_habit(sorted_weekly_habits[i])
 
                     elif analysis_choice == "2":        #longest streak(s)
-                        print("\n-- \033[1;36mL\033[0mongest \033[1;32mS\033[0mtreak(s) --\n")
+                        print("\n- \033[1;36mL\033[0mongest \033[1;32mS\033[0mtreak(s) -\n")
                         habits = get_habit_longest_streak(habit_list)
                         if not habits:
                             print("You have no habits with a recorded streak, yet.")
                         else:
-                            print (f"-- All Habits --")
+                            print (f"All Habits:")
                             if len(habits) == 1:
                                 for habit in habits:
                                     print(f"\033[1;32m'{habit.name}'\033[0m ({habit.has_periodicity()}) with {habit.longest_streak} consecutive timely completions (success rate: {habit.success_rate:.2f}%).")
@@ -148,23 +148,23 @@ def main():
                                 for habit in habits:
                                     print(f"\033[1;32m'{habit.name}'\033[0m ({habit.has_periodicity()}) with {habit.longest_streak} consecutive timely completions ({habit.success_rate:.2f}%)")      
                             
-                            print("\n-- Daily Habits (Ranking) --")
+                            print("\nDaily Habits (Ranking):")
                             ranked_daily_habits = get_habits_with_streak(daily_habit_list)
                             for i, habit in enumerate(ranked_daily_habits):
                                 print(f"{i+1}. '{habit.name}' with a streak of {habit.longest_streak} timely completions (success rate: {habit.success_rate:.2f}%)")
                             
-                            print("\n-- Weekly Habits (Ranking) --")
+                            print("\nWeekly Habits (Ranking):")
                             ranked_weekly_habits = get_habits_with_streak(weekly_habit_list)
                             for i, habit in enumerate(ranked_weekly_habits):
                                 print(f"{i+1}. '{habit.name}' with a streak of {habit.longest_streak} timely completions (success rate: {habit.success_rate:.2f}%)")
                                      
                     elif analysis_choice == "3":        #struggling habits
-                        print("\n-- \033[1;36mS\033[0mtruggling \033[1;32mH\033[0mabit(s) --\n")
+                        print("\n- \033[1;36mS\033[0mtruggling \033[1;32mH\033[0mabit(s) -\n")
                         habits = get_habit_most_struggling(habit_list)                       
                         if not habits:
                             print ("You have no 'struggling' habits. None of your tracked habit streaks ever broke.")
                         else:
-                            print (f"-- All Habits --")
+                            print (f"All Habits:")
                             if len(habits) == 1:
                                 for habit in habits:
                                     print(f"\033[1;31m'{habit.name}'\033[0m ({habit.has_periodicity()}) with {habit.broken} broken streaks is the habit you struggle the most with:\n Only {habit.success_rate:.2f}% of your completions were within.")
@@ -173,19 +173,19 @@ def main():
                                 for habit in habits:
                                     print(f"\033[1;31m'{habit.name}'\033[0m ({habit.has_periodicity()}) with {habit.broken} broken streaks is one of the habits you struggle the most with:\n Only {habit.success_rate:.2f}% of your completions were within.")
 
-                            print("\n-- Daily Habits (Ranking) --")
+                            print("\nDaily Habits (Ranking):")
                             ranked_daily_habits = get_struggling_habits(daily_habit_list)
                             for i, habit in enumerate(ranked_daily_habits):
                                 print(f"{i+1}. '{habit.name}' with {habit.broken} broken streaks and only {habit.success_rate:.2f}% timely completions")
 
-                            print("\n-- Daily Habits (Ranking) --")
+                            print("\nDaily Habits (Ranking):")
                             ranked_weekly_habits = get_struggling_habits(weekly_habit_list)
                             for i, habit in enumerate(ranked_weekly_habits):
                                 print(f"{i+1}. '{habit.name}' with {habit.broken} broken streaks and only {habit.success_rate:.2f}% timely completions")
                             
                 
                     elif analysis_choice == "4":        #details for a habit
-                        print("\n-- \033[1;36mD\033[0metails for \033[1;32mH\033[0mabit --")
+                        print("\n- \033[1;36mD\033[0metails for \033[1;32mH\033[0mabit -")
                         sorted_habit_list = sorted(habit_list, key=lambda habit: habit.name)
                         for habit in sorted_habit_list:
                             print(f"\033[1m[{habit.name}]\033[0m ({"daily" if habit.periodicity == 1 else "weekly"})")

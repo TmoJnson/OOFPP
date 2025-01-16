@@ -27,17 +27,6 @@ def details_habit(habit): #prints the details inkl. the dates of checks of a hab
             completion_date = completion.strftime('%Y-%m-%d, %H:%M h')
             print(f"- {completion_date}")
 
-def get_struggling_habits(habits): #if there are habits that have been broken it returns a list of them
-    if not habits:
-        return None
-    else:
-        struggling = [habit for habit in habits if habit.broken>0]
-        if not struggling:
-            return None        
-        else:
-            sorted_struggling = sorted(struggling, key=lambda habit: habit.success_rate)
-            return sorted_struggling
-
 def get_habits_with_streak(habits): #if there are habits that already started a streak retruns a list of them
     if not habits:
         return None
@@ -57,7 +46,18 @@ def get_habit_longest_streak(habits): #If the list of habits is not empty, the h
         max_longest_streak = max(habit.longest_streak for habit in streak_habits)
         habits_max_longest_streak = [habit for habit in streak_habits if habit.longest_streak == max_longest_streak]
         return habits_max_longest_streak
-    
+
+def get_struggling_habits(habits): #if there are habits that have been broken it returns a list of them
+    if not habits:
+        return None
+    else:
+        struggling = [habit for habit in habits if habit.broken>0]
+        if not struggling:
+            return None        
+        else:
+            sorted_struggling = sorted(struggling, key=lambda habit: habit.success_rate)
+            return sorted_struggling
+
 def get_habit_most_struggling(habits): #If the list of habits is not empty, the habit(s) with the lowest success rate is returned.
     struggling_habits = get_struggling_habits(habits)
     if not struggling_habits:
@@ -66,3 +66,6 @@ def get_habit_most_struggling(habits): #If the list of habits is not empty, the 
         min_success = min(habit.success_rate for habit in struggling_habits)
         habits_min_success = [habit for habit in struggling_habits if habit.success_rate == min_success]
         return habits_min_success
+
+
+
