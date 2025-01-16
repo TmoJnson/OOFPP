@@ -34,6 +34,7 @@ Keep checking off your completed Habits. If you want to return to the main menue
 ### <code>[2] Add/Remove Habits</code>
 
 Use this menu to manage your list of habits. StreakCheck shows you your currently tracked habits in alphabetical order.
+
 |Options| Instructions|
 |-|-|
 |<code>[1] Add a Habit|- Enter a unique name for the habit.<br>- Provide a description.<br>- Specify the periodicity as daily (<code>d</code>) or weekly (<code>w</code>).<br>- If every input is valid you get a confirmation.|
@@ -67,7 +68,12 @@ All habit data will be stored in a JSON file called <code>habits.json</code> for
 |Exit without saving|Enter <kbd>/</kbd> at the main menu. All changes within the session will be undone|
 |||
 
-## 3. Tips for Effective Usage
+## 3. How to use the test suite
+The repository includes a test suite to validate the app's functions and methods using various data. The tests are written in <code>test_project.py</code>, and you can modify them to include additional scenarios if needed. To run the tests, navigate to the directory containing the files and enter <code>pytest .</code> in the terminal. Ensure that pytest is installed in your environment.
+
+For user-perspective testing, the repository includes a sample dataset in <code>habits.json</code>. To load this data, simply run <code>main.py</code> by entering <code>python main.py</code> in the terminal. The app will automatically load the data from <code>habits.json</code>. If you prefer to test the app without any pre-existing data, delete or move the <code>habits.json</code> file from the directory before running the app. This will allow you to start with a fresh environment.
+
+## 4. Tips for Effective Usage
 
 1. Start small: Add only a few habits at first and gradually expand your list.
 
